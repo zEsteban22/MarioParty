@@ -18,7 +18,7 @@ import model.Tablero;
  *
  * @author zEstebanCruz
  */
-public class FXMLController implements Initializable {
+public class ControladorInicio implements Initializable {
 
 	/**
 	 * Initializes the controller class.
