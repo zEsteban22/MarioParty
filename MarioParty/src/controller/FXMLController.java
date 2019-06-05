@@ -28,7 +28,7 @@ public class FXMLController implements Initializable {
 
 	@FXML
 	void holaxd(MouseEvent mouseEvent) {
-		Tablero.creqarJugadores();
+		Tablero.crearJugadores();
 	}
 
 	@Override
