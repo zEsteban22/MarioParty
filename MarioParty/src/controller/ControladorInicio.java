@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import model.Tablero;
 
 /**
@@ -24,9 +25,10 @@ public class ControladorInicio implements Initializable {
 	 * Initializes the controller class.
 	 */
 	@FXML
-	private Button boton;
-
+	private AnchorPane AnchorPane;
 	@FXML
+	private Button botonxd;
+
 	void holaxd(MouseEvent mouseEvent) {
 		Tablero.crearJugadores();
 	}

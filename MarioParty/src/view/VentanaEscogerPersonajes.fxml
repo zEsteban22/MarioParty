@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControladorEscogerPersonajes">
+   <children>
+      <ImageView fitHeight="254.0" fitWidth="443.0" layoutX="79.0" layoutY="56.0" pickOnBounds="true">
+         <image>
+            <Image url="@../resources/todos.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="217.0" layoutY="31.0" text="Escoger personajes">
+         <font>
+            <Font name="Comic Sans MS" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="213.0" layoutY="69.0" text="Turno escoger del jugador #">
+         <font>
+            <Font name="Gill Sans MT" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelNumeroJugador" layoutX="379.0" layoutY="69.0" text="5">
+         <font>
+            <Font name="Gill Sans MT" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelFicha1" layoutX="105.0" layoutY="85.0" onMouseClicked="#ficha1Presionada" prefHeight="106.0" prefWidth="66.0" />
+      <Label fx:id="labelFicha2" layoutX="171.0" layoutY="105.0" onMouseClicked="#ficha2Presionada" prefHeight="83.0" prefWidth="50.0" />
+      <Label fx:id="labelFicha3" layoutX="221.0" layoutY="105.0" onMouseClicked="#ficha3Presionada" prefHeight="83.0" prefWidth="58.0" />
+      <Label fx:id="labelFicha4" layoutX="292.0" layoutY="85.0" onMouseClicked="#ficha4Presionada" prefHeight="100.0" prefWidth="55.0" />
+      <Label fx:id="labelFicha5" layoutX="347.0" layoutY="135.0" onMouseClicked="#ficha5Presionada" prefHeight="50.0" prefWidth="37.0" />
+      <Label fx:id="labelFicha6" layoutX="394.0" layoutY="97.0" onMouseClicked="#ficha6Presionada" prefHeight="83.0" prefWidth="50.0" />
+      <Label fx:id="labelFicha7" layoutX="453.0" layoutY="97.0" onMouseClicked="#ficha7Presionada" prefHeight="83.0" prefWidth="50.0" />
+      <Label fx:id="labelFicha8" layoutX="118.0" layoutY="199.0" onMouseClicked="#ficha8Presionada" prefHeight="83.0" prefWidth="85.0" />
+      <Label fx:id="labelFicha9" layoutX="226.0" layoutY="200.0" onMouseClicked="#ficha9Presionada" prefHeight="82.0" prefWidth="77.0" />
+      <Label fx:id="labelFichaA" layoutX="316.0" layoutY="200.0" onMouseClicked="#fichaAPresionada" prefHeight="82.0" prefWidth="80.0" />
+      <Label fx:id="labelFichaB" layoutX="405.0" layoutY="188.0" onMouseClicked="#fichaBPresionada" prefHeight="94.0" prefWidth="114.0" />
+      <ImageView fx:id="labelFichaC" fitHeight="69.0" fitWidth="63.0" layoutX="165.0" layoutY="290.0" onMouseClicked="#fichaCPresionada" preserveRatio="true">
+         <image>
+            <Image url="@../resources/diddy%20kong.jpg" />
+         </image></ImageView>
+      <ImageView fx:id="labelFichaD" fitHeight="44.0" fitWidth="43.0" layoutX="250.0" layoutY="299.0" onMouseClicked="#fichaDPresionada" preserveRatio="true">
+         <image>
+            <Image url="@../resources/gomba.jpg" />
+         </image></ImageView>
+      <ImageView fx:id="labelFichaE" fitHeight="50" fitWidth="50.0" layoutX="331.0" layoutY="297.0" onMouseClicked="#fichaEPresionada" preserveRatio="true">
+         <image>
+            <Image url="@../resources/king%20boo.jpg" />
+         </image></ImageView>
+      <ImageView fx:id="labelFichaF" fitHeight="82.0" fitWidth="58.0" layoutX="405.0" layoutY="282.0" onMouseClicked="#fichaFPresionada" preserveRatio="true">
+         <image>
+            <Image url="@../resources/bowsy.jpg" />
+         </image></ImageView>
+      <Button fx:id="botonAleatorio" layoutX="503.0" layoutY="347.0" mnemonicParsing="false" onAction="#aleatorioActual" text="Aleatorio" />
+   </children>
+</AnchorPane>
