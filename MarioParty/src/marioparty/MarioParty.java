@@ -23,7 +23,7 @@ public class MarioParty extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent root = FXMLLoader.load(ClassLoader.getSystemClassLoader().getResource("view/FXML.fxml"));
+			Parent root = FXMLLoader.load(ClassLoader.getSystemClassLoader().getResource("view/VentanaInicio.fxml"));
 			scene = new Scene(root);
 			primaryStage.setScene(scene);
 			primaryStage.show();

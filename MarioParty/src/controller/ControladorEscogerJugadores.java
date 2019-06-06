@@ -7,11 +7,15 @@ package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.stage.Stage;
+import model.MarioPartyUtils;
+import model.SistemaDeJuego;
 
 /**
  * FXML Controller class
@@ -27,11 +31,14 @@ public class ControladorEscogerJugadores implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		// TODO
+		comboBoxCantJugadores.setItems(FXCollections.observableArrayList(2, 3, 4, 5, 6));
+		comboBoxCantJugadores.setValue(2);
 	}
 
 	@FXML
-	private void accion(ActionEvent event) {
+	private void abrirEscogerPersonajes(ActionEvent event) {
+		MarioPartyUtils.cambiarAVentana("VentanaEscogerPersonajes.fxml", (Stage) botonListoxd.getScene().getWindow());
+		SistemaDeJuego.cantJugadores = comboBoxCantJugadores.getValue();
 	}
 
 }
