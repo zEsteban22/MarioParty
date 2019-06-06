@@ -19,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
+import javafx.scene.media.AudioClip;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
@@ -30,6 +31,8 @@ import javafx.scene.paint.Color;
  */
 public class ControladorEscogerPersonajes implements Initializable {
 
+        private AudioClip personajesTheme;
+    
 	@FXML
 	private Label labelNumeroJugador;
 	@FXML
@@ -75,7 +78,11 @@ public class ControladorEscogerPersonajes implements Initializable {
 			Arrays.asList(labelFicha1, labelFicha2, labelFicha3, labelFicha4, labelFicha5, labelFicha6,
 										labelFicha7, labelFicha8, labelFicha9, labelFichaA, labelFichaB, labelFichaC,
 										labelFichaD, labelFichaE, labelFichaF));
-	}
+            personajesTheme = new AudioClip(ClassLoader.getSystemClassLoader()
+                    .getResource("resources/Jugadores_Theme.wav").toExternalForm());
+            personajesTheme.setCycleCount(Integer.MAX_VALUE);
+            personajesTheme.play();
+        }
 
 	private void marcarDeshabilitado(Label label) {
 		label.setDisable(true);

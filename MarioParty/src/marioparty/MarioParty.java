@@ -25,6 +25,7 @@ public class MarioParty extends Application {
 		try {
 			Parent root = FXMLLoader.load(ClassLoader.getSystemClassLoader().getResource("view/VentanaInicio.fxml"));
 			scene = new Scene(root);
+                        
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch (IOException ex) {
