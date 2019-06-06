@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.AudioClip;
 
 /**
  * FXML Controller class
@@ -22,6 +23,8 @@ import javafx.scene.input.MouseEvent;
  */
 public class ControladorEscogerPersonajes implements Initializable {
 
+        private AudioClip personajesTheme;
+    
 	@FXML
 	private Label labelNumeroJugador;
 	@FXML
@@ -62,7 +65,11 @@ public class ControladorEscogerPersonajes implements Initializable {
 	 */
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		// TODO
+            // TODO
+            personajesTheme = new AudioClip(ClassLoader.getSystemClassLoader()
+                    .getResource("resources/Jugadores_Theme.wav").toExternalForm());
+            personajesTheme.setCycleCount(Integer.MAX_VALUE);
+            personajesTheme.play();
 	}
 
 	@FXML
