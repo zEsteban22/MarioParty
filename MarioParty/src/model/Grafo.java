@@ -9,6 +9,11 @@ package model;
  *
  * @author zEstebanCruz
  */
-public class Grafos {
+public class Grafo {
 
+	Nodo[] nodos;
+
+	Grafo() {
+		nodos = new Nodo[26];
+	}
 }

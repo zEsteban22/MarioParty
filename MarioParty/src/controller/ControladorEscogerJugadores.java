@@ -63,6 +63,7 @@ public class ControladorEscogerJugadores implements Initializable {
 	private void abrirEscogerPersonajes(ActionEvent event) {
 		MarioPartyUtils.cambiarAVentana("VentanaEscogerPersonajes.fxml", (Stage) botonListoxd.getScene().getWindow());
 		SistemaDeJuego.cantJugadores = comboBoxCantJugadores.getValue();
+		jugadoresTheme.stop();
 	}
 
 }

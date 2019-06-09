@@ -16,7 +16,7 @@
       </ImageView>
 <ImageView fitHeight="69.0" fitWidth="63.0" layoutX="165.0" layoutY="290.0" preserveRatio="true">
          <image>
-            <Image url="@../resources/diddy%20kong.jpg" />
+            <Image url="@../resources/diddy_kong.png" />
          </image>
       </ImageView>
       <Label layoutX="217.0" layoutY="31.0" text="Escoger personajes">
@@ -29,37 +29,37 @@
             <Font name="Gill Sans MT" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="labelNumeroJugador" layoutX="379.0" layoutY="69.0" text="5">
+      <Label fx:id="labelNumeroJugador" layoutX="379.0" layoutY="69.0" text="1">
          <font>
             <Font name="Gill Sans MT" size="14.0" />
          </font>
       </Label><ImageView fitHeight="44.0" fitWidth="43.0" layoutX="250.0" layoutY="299.0" preserveRatio="true">
          <image>
-            <Image url="@../resources/gomba.jpg" />
+            <Image url="@../resources/goomba.png" />
          </image></ImageView>
 			<ImageView fitHeight="50" fitWidth="50.0" layoutX="331.0" layoutY="297.0" preserveRatio="true">
          <image>
-            <Image url="@../resources/king%20boo.jpg" />
+            <Image url="@../resources/king_boo.png" />
          </image></ImageView>
 <ImageView fitHeight="82.0" fitWidth="58.0" layoutX="405.0" layoutY="282.0" preserveRatio="true">
          <image>
-            <Image url="@../resources/bowsy.jpg" />
+            <Image url="@../resources/bowsy.png" />
          </image></ImageView>
-      <Label fx:id="labelFichaF" layoutX="405.0" layoutY="282.0" onMouseClicked="#fichaFPresionada" prefHeight="82.0" prefWidth="58.0" />
+      <Label fx:id="labelFichaF" layoutX="405.0" layoutY="282.0" onMouseClicked="#escogerFicha" prefHeight="82.0" prefWidth="58.0" />
       <Button fx:id="botonAleatorio" layoutX="503.0" layoutY="347.0" mnemonicParsing="false" onAction="#aleatorioActual" text="Aleatorio" />
-      <Label fx:id="labelFicha1" layoutX="105.0" layoutY="85.0" onMouseClicked="#ficha1Presionada" prefHeight="106.0" prefWidth="66.0" />
-      <Label fx:id="labelFicha2" layoutX="171.0" layoutY="105.0" onMouseClicked="#ficha2Presionada" opacity="0.5" prefHeight="83.0" prefWidth="50.0" />
-      <Label fx:id="labelFicha3" layoutX="221.0" layoutY="105.0" onMouseClicked="#ficha3Presionada" opacity="0.5" prefHeight="83.0" prefWidth="58.0" />
-      <Label fx:id="labelFicha4" layoutX="292.0" layoutY="85.0" onMouseClicked="#ficha4Presionada" opacity="0.5" prefHeight="100.0" prefWidth="55.0" />
-      <Label fx:id="labelFicha5" layoutX="347.0" layoutY="135.0" onMouseClicked="#ficha5Presionada" opacity="0.5" prefHeight="50.0" prefWidth="37.0" />
-      <Label fx:id="labelFicha6" layoutX="394.0" layoutY="97.0" onMouseClicked="#ficha6Presionada" opacity="0.5" prefHeight="83.0" prefWidth="50.0" />
-      <Label fx:id="labelFicha7" layoutX="453.0" layoutY="97.0" onMouseClicked="#ficha7Presionada" opacity="0.5" prefHeight="83.0" prefWidth="50.0" />
-      <Label fx:id="labelFicha8" layoutX="118.0" layoutY="199.0" onMouseClicked="#ficha8Presionada" opacity="0.5" prefHeight="83.0" prefWidth="85.0" />
-      <Label fx:id="labelFicha9" layoutX="226.0" layoutY="200.0" onMouseClicked="#ficha9Presionada" opacity="0.5" prefHeight="82.0" prefWidth="77.0" />
-      <Label fx:id="labelFichaA" layoutX="316.0" layoutY="200.0" onMouseClicked="#fichaAPresionada" opacity="0.5" prefHeight="82.0" prefWidth="80.0" />
-      <Label fx:id="labelFichaB" layoutX="405.0" layoutY="188.0" onMouseClicked="#fichaBPresionada" opacity="0.5" prefHeight="94.0" prefWidth="114.0" />
-      <Label fx:id="labelFichaC" layoutX="165.0" layoutY="290.0" onMouseClicked="#fichaCPresionada" prefHeight="69.0" prefWidth="63.0" />
-      <Label fx:id="labelFichaD" layoutX="250.0" layoutY="299.0" onMouseClicked="#fichaDPresionada" prefHeight="44.0" prefWidth="43.0" />
-      <Label fx:id="labelFichaE" layoutX="331.0" layoutY="297.0" onMouseClicked="#fichaEPresionada" prefHeight="50" prefWidth="50.0" />
+      <Label fx:id="labelFicha1" layoutX="105.0" layoutY="85.0" onMouseClicked="#escogerFicha" prefHeight="106.0" prefWidth="66.0" />
+      <Label fx:id="labelFicha2" layoutX="171.0" layoutY="105.0" onMouseClicked="#escogerFicha" opacity="0.5" prefHeight="83.0" prefWidth="50.0" />
+      <Label fx:id="labelFicha3" layoutX="221.0" layoutY="105.0" onMouseClicked="#escogerFicha" opacity="0.5" prefHeight="83.0" prefWidth="58.0" />
+      <Label fx:id="labelFicha4" layoutX="292.0" layoutY="85.0" onMouseClicked="#escogerFicha" opacity="0.5" prefHeight="100.0" prefWidth="55.0" />
+      <Label fx:id="labelFicha5" layoutX="347.0" layoutY="135.0" onMouseClicked="#escogerFicha" opacity="0.5" prefHeight="50.0" prefWidth="37.0" />
+      <Label fx:id="labelFicha6" layoutX="394.0" layoutY="97.0" onMouseClicked="#escogerFicha" opacity="0.5" prefHeight="83.0" prefWidth="50.0" />
+      <Label fx:id="labelFicha7" layoutX="453.0" layoutY="97.0" onMouseClicked="#escogerFicha" opacity="0.5" prefHeight="83.0" prefWidth="50.0" />
+      <Label fx:id="labelFicha8" layoutX="118.0" layoutY="199.0" onMouseClicked="#escogerFicha" opacity="0.5" prefHeight="83.0" prefWidth="85.0" />
+      <Label fx:id="labelFicha9" layoutX="226.0" layoutY="200.0" onMouseClicked="#escogerFicha" opacity="0.5" prefHeight="82.0" prefWidth="77.0" />
+      <Label fx:id="labelFichaA" layoutX="316.0" layoutY="200.0" onMouseClicked="#escogerFicha" opacity="0.5" prefHeight="82.0" prefWidth="80.0" />
+      <Label fx:id="labelFichaB" layoutX="405.0" layoutY="188.0" onMouseClicked="#escogerFicha" opacity="0.5" prefHeight="94.0" prefWidth="114.0" />
+      <Label fx:id="labelFichaC" layoutX="165.0" layoutY="290.0" onMouseClicked="#escogerFicha" prefHeight="69.0" prefWidth="63.0" />
+      <Label fx:id="labelFichaD" layoutX="250.0" layoutY="299.0" onMouseClicked="#escogerFicha" prefHeight="44.0" prefWidth="43.0" />
+      <Label fx:id="labelFichaE" layoutX="331.0" layoutY="297.0" onMouseClicked="#escogerFicha" prefHeight="50" prefWidth="50.0" />
    </children>
 </AnchorPane>

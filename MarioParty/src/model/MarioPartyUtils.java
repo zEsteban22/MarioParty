@@ -6,6 +6,7 @@
 package model;
 
 import java.io.IOException;
+import java.net.URL;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,6 +17,10 @@ import javafx.stage.Stage;
  * @author zEstebanCruz
  */
 public class MarioPartyUtils {
+
+	public static final String[] PERSONAJES = {"daisy", "luigi", "mario", "peach", "toad", "birdo",
+																						 "yoshi", "donkey_kong", "waluigi", "wario", "bowser",
+																						 "diddy_kong", "goomba", "king_boo", "bowsy"};
 
 	public static void cambiarAVentana(String siguienteVentana, Stage ventanaAnterior) {
 		ventanaAnterior.close();
@@ -28,5 +33,10 @@ public class MarioPartyUtils {
 		} catch (IOException e) {
 			System.out.println("Error: " + e.getMessage());
 		}
+	}
+
+	public static URL urlPersonajeActual() {
+		String s = "resources/" + SistemaDeJuego.getFicha(0) + ".png";
+		return ClassLoader.getSystemClassLoader().getResource(s);
 	}
 }
