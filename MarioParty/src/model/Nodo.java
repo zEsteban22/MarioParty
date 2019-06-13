@@ -15,15 +15,19 @@ public class Nodo {
 
 	Modificador modificador;
 	ArrayList<Nodo> conexiones;
+	ArrayList<Short> pesos;
 
-	Nodo(Modificador m, char letra) {
+	Nodo(Modificador m) {
 		modificador = m;
 		conexiones = new ArrayList<>();
+		pesos = new ArrayList<>();
 	}
 
-	void addConexionNoDirigida(Nodo nodo) {
+	void addConexionNoDirigida(Nodo nodo, short peso) {
 		conexiones.add(nodo);
 		nodo.conexiones.add(nodo);
+		pesos.add(peso);
+		nodo.pesos.add(peso);
 	}
 
 }
