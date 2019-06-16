@@ -19,7 +19,6 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -108,9 +107,7 @@ public class ControladorRifarPrimerJugador implements Initializable {
 	}
 
 	private void abrirVentanaDeJuego() {
-		//MarioPartyUtils.cambiarAVentana("VentanaDeJuego.fxml", (Stage) labelNumeroGenerado.getScene().getWindow());
-		new Alert(Alert.AlertType.INFORMATION, "Se ha rifado con éxito xd").showAndWait();
-		((Stage) labelNumeroGenerado.getScene().getWindow()).close();
+		MarioPartyUtils.cambiarAVentana("VentanaDeJuego.fxml", (Stage) labelNumeroGenerado.getScene().getWindow());
 	}
 
 	private long f(int i, int numero) {

@@ -12,7 +12,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -23,7 +22,7 @@ import java.util.Set;
 public final class Grafo extends ArrayList<Nodo> {
 
 	Grafo() {
-		super();
+		super(26);
 	}
 
 	Map<Nodo, Integer> dijkstra(Nodo inicio) {
@@ -34,7 +33,9 @@ public final class Grafo extends ArrayList<Nodo> {
 		return DijkstraAlgorithm.getPath(objetivo);
 	}
 
-	//short[][] floyd()
+	Short[] floyd(Nodo nodo) {
+		return FloydWarshall.floydWarshall(this)[indexOf(nodo)];
+	}
 }
 
 final class DijkstraAlgorithm {
@@ -124,10 +125,10 @@ final class DijkstraAlgorithm {
 
 final class FloydWarshall {
 
-	static short[][] floydWarshall(Grafo grafo) {
+	static Short[][] floydWarshall(Grafo grafo) {
 		final int numVertices = 26;
-		short[][] dist = new short[numVertices][numVertices];
-		for (short[] row : dist)
+		Short[][] dist = new Short[numVertices][numVertices];
+		for (Short[] row : dist)
 			Arrays.fill(row, Short.MAX_VALUE);
 		// Hasta aquí {dist} está lleno con infinitos
 		Nodo nI;
