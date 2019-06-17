@@ -9,146 +9,148 @@
 
 <AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1260.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControladorDeJuego">
    <children>
-      <Label layoutX="988.0" layoutY="63.0" prefHeight="17.0" prefWidth="84.0" text="Jugador actual:" />
-      <ImageView fx:id="imagenJugadorActual" fitHeight="100.0" fitWidth="101.0" layoutX="1086.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" />
-      <ListView fx:id="listaFloyd" layoutX="1005.0" layoutY="165.0" prefHeight="242.0" prefWidth="165.0" />
-      <Label layoutX="994.0" layoutY="422.0" text="Menor distancia a todos los nodos:" />
-      <Label layoutX="1010.0" layoutY="148.0" text="Caminos que puede recorrer:" />
+      <Label layoutX="937.0" layoutY="68.0" prefHeight="17.0" prefWidth="84.0" text="Jugador actual:" />
+      <ImageView fx:id="imagenJugadorActual" fitHeight="100.0" fitWidth="101.0" layoutX="1035.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" />
+      <ListView fx:id="listaFloyd" layoutX="994.0" layoutY="174.0" prefHeight="242.0" prefWidth="165.0" />
+      <Label layoutX="983.0" layoutY="431.0" text="Menor distancia a todos los nodos:" />
+      <Label layoutX="998.0" layoutY="157.0" text="Caminos que puede recorrer:" />
       <AnchorPane layoutX="34.0" layoutY="30.0" prefHeight="660.0" prefWidth="880.0">
          <children>
-            <ImageView fx:id="casillaA" fitHeight="70.0" fitWidth="70.0" layoutX="132.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="casillaA" fitHeight="70.0" fitWidth="70.0" layoutX="365.0" layoutY="414.0" onMouseClicked="#accionCasilla" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/guessBox.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="casillaB" fitHeight="70.0" fitWidth="70.0" layoutX="219.0" layoutY="230.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="casillaB" fitHeight="70.0" fitWidth="70.0" layoutX="452.0" layoutY="414.0" onMouseClicked="#accionCasilla" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/guessBox.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="casillaC" fitHeight="70.0" fitWidth="70.0" layoutX="4.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="casillaC" fitHeight="70.0" fitWidth="70.0" layoutX="530.0" layoutY="414.0" onMouseClicked="#accionCasilla" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/guessBox.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="casillaD" fitHeight="70.0" fitWidth="70.0" layoutX="322.0" layoutY="242.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="casillaD" fitHeight="70.0" fitWidth="70.0" layoutX="618.0" layoutY="414.0" onMouseClicked="#accionCasilla" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/guessBox.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="casillaE" fitHeight="70.0" fitWidth="70.0" layoutX="220.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="casillaE" fitHeight="70.0" fitWidth="70.0" layoutX="705.0" layoutY="414.0" onMouseClicked="#accionCasilla" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/guessBox.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="casillaF" fitHeight="70.0" fitWidth="70.0" layoutX="305.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="casillaF" fitHeight="70.0" fitWidth="70.0" layoutX="810.0" layoutY="413.0" onMouseClicked="#accionCasilla" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/guessBox.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="casillaG" fitHeight="70.0" fitWidth="70.0" layoutX="299.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="casillaG" fitHeight="70.0" fitWidth="70.0" layoutX="807.0" layoutY="493.0" onMouseClicked="#accionCasilla" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/guessBox.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="casillaH" fitHeight="70.0" fitWidth="70.0" layoutX="23.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="casillaH" fitHeight="70.0" fitWidth="70.0" layoutX="715.0" layoutY="494.0" onMouseClicked="#accionCasilla" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/guessBox.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="casillaI" fitHeight="70.0" fitWidth="70.0" layoutX="70.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="casillaI" fitHeight="70.0" fitWidth="70.0" layoutX="628.0" layoutY="494.0" onMouseClicked="#accionCasilla" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/guessBox.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="casillaJ" fitHeight="70.0" fitWidth="70.0" layoutX="260.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="casillaJ" fitHeight="70.0" fitWidth="70.0" layoutX="541.0" layoutY="494.0" onMouseClicked="#accionCasilla" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/guessBox.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="casillaK" fitHeight="70.0" fitWidth="70.0" layoutX="179.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="casillaK" fitHeight="70.0" fitWidth="70.0" layoutX="450.0" layoutY="494.0" onMouseClicked="#accionCasilla" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/guessBox.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="casillaL" fitHeight="70.0" fitWidth="70.0" layoutX="526.0" layoutY="230.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="casillaL" fitHeight="70.0" fitWidth="70.0" layoutX="355.0" layoutY="494.0" onMouseClicked="#accionCasilla" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/guessBox.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="casillaM" fitHeight="70.0" fitWidth="70.0" layoutX="353.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="casillaM" fitHeight="70.0" fitWidth="70.0" layoutX="264.0" layoutY="494.0" onMouseClicked="#accionCasilla" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/guessBox.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="casillaN" fitHeight="70.0" fitWidth="70.0" layoutX="260.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="casillaN" fitHeight="70.0" fitWidth="70.0" layoutX="182.0" layoutY="494.0" onMouseClicked="#accionCasilla" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/guessBox.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="casillaO" fitHeight="70.0" fitWidth="70.0" layoutX="357.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="casillaO" fitHeight="70.0" fitWidth="70.0" layoutX="97.0" layoutY="494.0" onMouseClicked="#accionCasilla" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/guessBox.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="casillaP" fitHeight="70.0" fitWidth="70.0" layoutX="361.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="casillaP" fitHeight="70.0" fitWidth="70.0" layoutX="23.0" layoutY="494.0" onMouseClicked="#accionCasilla" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/guessBox.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="casillaQ" fitHeight="70.0" fitWidth="70.0" layoutX="330.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="casillaQ" fitHeight="70.0" fitWidth="70.0" layoutX="23.0" layoutY="576.0" onMouseClicked="#accionCasilla" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/guessBox.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="casillaR" fitHeight="70.0" fitWidth="70.0" layoutX="372.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="casillaR" fitHeight="70.0" fitWidth="70.0" layoutX="97.0" layoutY="576.0" onMouseClicked="#accionCasilla" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/guessBox.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="casillaS" fitHeight="70.0" fitWidth="70.0" layoutX="216.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="casillaS" fitHeight="70.0" fitWidth="70.0" layoutX="179.0" layoutY="576.0" onMouseClicked="#accionCasilla" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/guessBox.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="casillaT" fitHeight="70.0" fitWidth="70.0" layoutX="307.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="casillaT" fitHeight="70.0" fitWidth="70.0" layoutX="270.0" layoutY="576.0" onMouseClicked="#accionCasilla" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/guessBox.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="casillaU" fitHeight="70.0" fitWidth="70.0" layoutX="53.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="casillaU" fitHeight="70.0" fitWidth="70.0" layoutX="365.0" layoutY="576.0" onMouseClicked="#accionCasilla" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/guessBox.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="casillaV" fitHeight="70.0" fitWidth="70.0" layoutX="219.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="casillaV" fitHeight="70.0" fitWidth="70.0" layoutX="456.0" layoutY="576.0" onMouseClicked="#accionCasilla" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/guessBox.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="casillaW" fitHeight="70.0" fitWidth="70.0" layoutX="543.0" layoutY="576.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="casillaW" fitHeight="70.0" fitWidth="70.0" layoutX="543.0" layoutY="576.0" onMouseClicked="#accionCasilla" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/guessBox.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="casillaX" fitHeight="70.0" fitWidth="70.0" layoutX="630.0" layoutY="576.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="casillaX" fitHeight="70.0" fitWidth="70.0" layoutX="630.0" layoutY="576.0" onMouseClicked="#accionCasilla" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/guessBox.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="casillaY" fitHeight="70.0" fitWidth="70.0" layoutX="708.0" layoutY="576.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="casillaY" fitHeight="70.0" fitWidth="70.0" layoutX="708.0" layoutY="576.0" onMouseClicked="#accionCasilla" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/guessBox.png" />
                </image>
             </ImageView>
-			 <ImageView fx:id="casillaZ" fitHeight="70.0" fitWidth="70.0" layoutX="796.0" layoutY="576.0" pickOnBounds="true" preserveRatio="true">
+			 <ImageView fx:id="casillaZ" fitHeight="70.0" fitWidth="70.0" layoutX="810.0" layoutY="575.0" onMouseClicked="#accionCasilla" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/guessBox.png" />
                </image>
             </ImageView>
          </children>
       </AnchorPane>
-      <Button fx:id="botonTurno" layoutX="1003.0" layoutY="103.0" mnemonicParsing="false" onAction="#girarDado" text="Girar dato" />
-      <ListView fx:id="listaDijkstra" layoutX="1005.0" layoutY="439.0" prefHeight="242.0" prefWidth="165.0" />
+      <Button fx:id="botonTurno" layoutX="952.0" layoutY="108.0" mnemonicParsing="false" onAction="#girarDado" text="Girar dato" />
+      <ListView fx:id="listaDijkstra" layoutX="994.0" layoutY="448.0" prefHeight="242.0" prefWidth="165.0" />
+      <ListView fx:id="listaVisitados" layoutX="1151.0" layoutY="52.0" prefHeight="89.0" prefWidth="62.0" />
+      <Label layoutX="1151.0" layoutY="30.0" text="Visitados" />
    </children>
 </AnchorPane>

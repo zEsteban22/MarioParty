@@ -7,18 +7,31 @@ package controller;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
+import javafx.animation.SequentialTransition;
+import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 import javafx.util.Pair;
+import javax.swing.JOptionPane;
 import model.MarioPartyUtils;
 import model.SistemaDeJuego;
 
@@ -92,6 +105,9 @@ public class ControladorDeJuego implements Initializable {
 	@FXML
 	private ListView<String> listaDijkstra;
 	private List<Pair<ImageView, Character>> caracteresPorCasilla;
+	private List<ImageView> fichasJugadores;
+	@FXML
+	private ListView<String> listaVisitados;
 
 	/**
 	 * Initializes the controller class.
@@ -99,9 +115,19 @@ public class ControladorDeJuego implements Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		SistemaDeJuego.iniciarJuego();
-		actualizarListaFloyd();
-		actualizarListaDijkstra();
-		imagenJugadorActual.setImage(new Image(MarioPartyUtils.urlPersonajeActual().toString()));
+		fichasJugadores = new ArrayList<>(SistemaDeJuego.cantJugadores);
+		ImageView temp;
+		for (String ficha : SistemaDeJuego.getFichas()) {
+			temp = new ImageView(MarioPartyUtils.urlPersonaje(ficha).toString());
+			temp.setFitWidth(70);
+			temp.setFitHeight(70);
+			temp.setPreserveRatio(true);
+			fichasJugadores.add(temp);
+			((AnchorPane) casillaA.getParent()).getChildren().add(temp);
+			temp.setLayoutX(392);
+			temp.setLayoutY(295);
+			ejecutarAnimacionDespues(temp, ficha);
+		}
 		caracteresPorCasilla = new ArrayList<>(26);
 		// <editor-fold defaultstate="collapsed" desc="Inicialización del mapa de casillas de la interfaz con su respectiva letra... ">
 		caracteresPorCasilla.add(new Pair<>(casillaA, 'A'));
@@ -131,11 +157,11 @@ public class ControladorDeJuego implements Initializable {
 		caracteresPorCasilla.add(new Pair<>(casillaY, 'Y'));
 		caracteresPorCasilla.add(new Pair<>(casillaZ, 'Z'));
 		// </editor-fold>
-		caracteresPorCasilla.forEach((Pair<ImageView, Character> p) -> {
-			(p.getKey()).setDisable(true);
-		});
-		evaluarTurno();
+		actualizarVista();
+	}
 
+	private void ejecutarAnimacionDespues(ImageView imagen, String ficha) {
+		Platform.runLater(() -> moverJugador(imagen, SistemaDeJuego.getCharPosicion(ficha), Duration.seconds(2)));
 	}
 
 	private Character getCharacter(ImageView image) {
@@ -152,6 +178,19 @@ public class ControladorDeJuego implements Initializable {
 		return null;
 	}
 
+	private void actualizarVista() {
+		listaVisitados.getItems().clear();
+		listaVisitados.getItems().addAll(SistemaDeJuego.getCasillasVisitadas());
+		imagenJugadorActual.setImage(new Image(MarioPartyUtils.urlPersonajeActual().toString()));
+		caracteresPorCasilla.forEach((Pair<ImageView, Character> p) -> {
+			(p.getKey()).setDisable(true);
+			(p.getKey()).setEffect(null);
+		});
+		actualizarListaFloyd();
+		actualizarListaDijkstra();
+		evaluarTurno();
+	}
+
 	private void actualizarListaFloyd() {
 		ObservableList<String> lista = listaFloyd.getItems();
 		lista.clear();
@@ -166,36 +205,113 @@ public class ControladorDeJuego implements Initializable {
 		lista.clear();
 		Integer[] largoMinimosCaminos = SistemaDeJuego.minimosCaminos();
 		for (short i = 0; i < largoMinimosCaminos.length; i++)
-			if (!SistemaDeJuego.jugadorActualHaVisitado(i) && largoMinimosCaminos[i] != 0)
+			if (!SistemaDeJuego.jA_haVisitado((int) i) && largoMinimosCaminos[i] != 0)
 				lista.add((char) (i + 'A') + " -> " + largoMinimosCaminos[i]);
 	}
 
 	private void evaluarTurno() {
-		if (SistemaDeJuego.jA_tieneCastigo())
+		if (SistemaDeJuego.jA_tieneCastigo()) {
 			SistemaDeJuego.jA_disminuirCondena();
-		else if (SistemaDeJuego.jugadorHaVisitadoSuCasillaActual())
+			JOptionPane.showMessageDialog(
+				null, "El jugador tiene un castigo, se ha disminuido su castigo un turno.", "Castigo", 1);
+			siguienteTurno();
+		} else if (SistemaDeJuego.jA_haVisitadoCasillaActual())
 			botonTurno.setDisable(false);
-		else
-			SistemaDeJuego.jugarCasillaActual(); //moverJugadorAnimadamente(SistemaDeJuego.getCharPosicionJugadorActual());}
+		else {
+			SistemaDeJuego.jugarCasillaActual();
+			moverJugador(fichasJugadores.get(0), SistemaDeJuego.getCharPosicion_jA(), Duration.seconds(2));
+			if (SistemaDeJuego.jA_haGanado()) {
+				JOptionPane.showMessageDialog(null, "Has ganado!", "Ganador", 1);
+				((AnchorPane) botonTurno.getParent()).setDisable(true);
+			}
+		}
 	}
 
-	private void moverJugadorAnimadamente(Character charPosicionJugadorActual) {
-		throw new UnsupportedOperationException("Not supported yet.");
+	private void moverJugador(ImageView imagenJugador, Character casillaObjetivo, Duration duracion) {
+		makeTransition(imagenJugador, casillaObjetivo, duracion).play();
+	}
+
+	private TranslateTransition makeTransition(ImageView imagenJugador, Character casillaObjetivo, Duration duracion) {
+		return makeTransition(imagenJugador, imagenJugador, casillaObjetivo, duracion);
+	}
+
+	private TranslateTransition makeTransition(ImageView imagenJugador, ImageView anterior, Character casillaObjetivo, Duration duracion) {
+		ImageView objetivo = getCasilla(casillaObjetivo);
+		TranslateTransition transicion = new TranslateTransition(duracion, imagenJugador);
+		transicion.setToX(objetivo.getLayoutX() - imagenJugador.getLayoutX());
+		transicion.setToY(objetivo.getLayoutY() - imagenJugador.getLayoutY());
+		return transicion;
+	}
+
+	private void realizarRecorrido(LinkedList<Character> camino, int tamanioInicial) {
+		SequentialTransition s = new SequentialTransition();
+		for (short i = 0; i < camino.size(); i++)
+			s.getChildren().add(
+				makeTransition(fichasJugadores.get(0), i == 0 ? fichasJugadores.get(0) : getCasilla(camino.get(i - 1)), camino.get(i),
+											 Duration.seconds(1)));
+		s.play();
+		s.setOnFinished((event) -> {
+			SistemaDeJuego.jugarCasillaActual();
+			siguienteTurno();
+		});
 	}
 
 	@FXML
 	private void girarDado(ActionEvent event) {
+		botonTurno.setDisable(true);
 		Random r = new Random();
+		String s;
 		int dado1 = r.nextInt(7), dado2 = r.nextInt(7);
-		if (dado1 + dado2 == 0)
+		if (dado1 + dado2 == 0) {
+			s = "Ups, ambos dados han caído en castigo, entonces ahora "
+					+ "el jugador tiene 3 turnos de castigo.";
+
 			SistemaDeJuego.jA_ponerCastigo(3);
-		else if (dado1 == 0 || dado2 == 0)
+		} else if (dado1 == 0 || dado2 == 0) {
+			s = "En un dado ha caído castigo, ahora el jugador tiene un "
+					+ "turno de castigo.";
 			SistemaDeJuego.jA_ponerCastigo(1);
-		else activarCasillas(dado1 + dado2);
+		} else {
+			s = "Ha caído un " + (dado1 + dado2) + " en los dados.";
+			activarCasillas(dado1 + dado2);
+		}
+		JOptionPane.showMessageDialog(null, s, "Resultado dados", 1);
+		if (SistemaDeJuego.jA_tieneCastigo())
+			siguienteTurno();
 	}
 
-	private void activarCasillas(int i) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	private void activarCasillas(int resultadoDado) {
+		ImageView casilla;
+		boolean hayAlguna = false;
+		for (String str : listaFloyd.getItems())
+			if (Integer.parseInt(str.substring(str.lastIndexOf(" ") + 1)) == resultadoDado
+					&& !SistemaDeJuego.jA_haVisitado(str.charAt(0))
+					&& !SistemaDeJuego.hayUnJugadorEn(str.charAt(0))) {
+				casilla = getCasilla(str.charAt(0));
+				casilla.setDisable(false);
+				casilla.setEffect(new Glow(0.8));
+				hayAlguna = true;
+			}
+		if (!hayAlguna) {
+			JOptionPane.showMessageDialog(
+				null, "No hay caminos posibles para ese resultado de dado, le toca "
+							+ "el turno al siguiente jugador.", "Sin caminos posibles.", 1);
+			siguienteTurno();
+		}
+	}
+
+	@FXML
+	private void accionCasilla(MouseEvent event) {
+		LinkedList<Character> recorrido;
+		recorrido = SistemaDeJuego.obtenerCaminoA(getCharacter((ImageView) event.getSource()));
+		realizarRecorrido(recorrido, recorrido.size());
+		SistemaDeJuego.mover_jA(getCharacter((ImageView) event.getSource()));
+	}
+
+	private void siguienteTurno() {
+		Collections.rotate(fichasJugadores, -1);
+		SistemaDeJuego.siguienteTurno();
+		actualizarVista();
 	}
 
 }

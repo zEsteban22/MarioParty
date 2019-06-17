@@ -35,6 +35,10 @@ public class MarioPartyUtils {
 		}
 	}
 
+	public static URL urlPersonaje(String ficha) {
+		return ClassLoader.getSystemClassLoader().getResource("resources/" + ficha + ".png");
+	}
+
 	public static URL urlPersonajeActual() {
 		String s = "resources/" + SistemaDeJuego.getFicha(0) + ".png";
 		return ClassLoader.getSystemClassLoader().getResource(s);

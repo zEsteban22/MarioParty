@@ -44,6 +44,7 @@ public class ControladorRifarPrimerJugador implements Initializable {
 	private Button botonGenerarAleatorio;
 	private Random random;
 	private Map<String, Integer> resultados;
+	private Boolean terminarAnimacion = false;
 
 	private String getRandom() {
 		return Integer.toString(new Random().nextInt(1000));
@@ -85,15 +86,21 @@ public class ControladorRifarPrimerJugador implements Initializable {
 		abrirVentanaDeJuego();
 	}
 
+	@FXML
+	private void finalizarAnimacion() {
+		terminarAnimacion = true;
+	}
+
 	private void terminarAnimacion() {
 		imagenPersonajeActual.setImage(new Image(MarioPartyUtils.urlPersonajeActual().toString(), true));
 		botonGenerarAleatorio.setDisable(false);
 		if (resultados.size() == SistemaDeJuego.cantJugadores)
 			terminarRifa();
+		terminarAnimacion = false;
 	}
 
 	private void animarCambio(final int i, final int numero) {
-		if (i == numero) {
+		if (i == numero || terminarAnimacion) {
 			labelNumeroGenerado.setText(Integer.toString(numero));
 			terminarAnimacion();
 			return;
