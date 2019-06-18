@@ -6,11 +6,13 @@
 package marioparty;
 
 import java.io.IOException;
+import java.util.Arrays;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import static view.Selector.escogerJugador;
 
 /**
  *
@@ -41,7 +43,9 @@ public class MarioParty extends Application {
 	 * @param args the command line arguments
 	 */
 	public static void main(String[] args) {
-		launch(args);
+		//launch(args);
+		String s = escogerJugador(Arrays.asList("hola", "JAJA", "Me cago xd", ":c"));
+		System.out.println(s);
 	}
 
 }

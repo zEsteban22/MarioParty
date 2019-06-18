@@ -25,10 +25,12 @@ public class MarioPartyUtils {
 	public static void cambiarAVentana(String siguienteVentana, Stage ventanaAnterior) {
 		ventanaAnterior.close();
 		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(ClassLoader.getSystemClassLoader().getResource("view/" + siguienteVentana));
-			Parent root = (Parent) fxmlLoader.load();
 			Stage stage = new Stage();
-			stage.setScene(new Scene(root));
+			stage.setScene(
+				new Scene(
+					(Parent) new FXMLLoader(
+						ClassLoader.getSystemClassLoader().getResource(
+							"view/" + siguienteVentana)).load()));
 			stage.show();
 		} catch (IOException e) {
 			System.out.println("Error: " + e.getMessage());

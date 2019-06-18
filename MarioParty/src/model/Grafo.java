@@ -36,6 +36,10 @@ public final class Grafo extends ArrayList<Nodo> {
 	Short[] floyd(Nodo nodo) {
 		return FloydWarshall.floydWarshall(this)[indexOf(nodo)];
 	}
+
+	Short[][] floydCompleto() {
+		return FloydWarshall.floydWarshall(this);
+	}
 }
 
 final class DijkstraAlgorithm {

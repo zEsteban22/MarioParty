@@ -5,6 +5,7 @@
  */
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,16 +13,16 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
 import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.effect.Glow;
@@ -29,6 +30,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.util.Pair;
 import javax.swing.JOptionPane;
@@ -232,32 +234,30 @@ public class ControladorDeJuego implements Initializable {
 	}
 
 	private TranslateTransition makeTransition(ImageView imagenJugador, Character casillaObjetivo, Duration duracion) {
-		return makeTransition(imagenJugador, imagenJugador, casillaObjetivo, duracion);
-	}
-
-	private TranslateTransition makeTransition(ImageView imagenJugador, ImageView anterior, Character casillaObjetivo, Duration duracion) {
 		ImageView objetivo = getCasilla(casillaObjetivo);
 		TranslateTransition transicion = new TranslateTransition(duracion, imagenJugador);
 		transicion.setToX(objetivo.getLayoutX() - imagenJugador.getLayoutX());
 		transicion.setToY(objetivo.getLayoutY() - imagenJugador.getLayoutY());
+		transicion.setAutoReverse(false);
 		return transicion;
 	}
 
-	private void realizarRecorrido(LinkedList<Character> camino, int tamanioInicial) {
+	private void realizarRecorrido(LinkedList<Character> camino) {
 		SequentialTransition s = new SequentialTransition();
 		for (short i = 0; i < camino.size(); i++)
 			s.getChildren().add(
-				makeTransition(fichasJugadores.get(0), i == 0 ? fichasJugadores.get(0) : getCasilla(camino.get(i - 1)), camino.get(i),
-											 Duration.seconds(1)));
-		s.play();
+				makeTransition(fichasJugadores.get(0), camino.get(i), Duration.seconds((double) 2 * i / (double) camino.size())));
 		s.setOnFinished((event) -> {
 			SistemaDeJuego.jugarCasillaActual();
 			siguienteTurno();
 		});
+		s.setAutoReverse(false);
+		s.play();
 	}
 
 	@FXML
-	private void girarDado(ActionEvent event) {
+	private void girarDado(ActionEvent event
+	) {
 		botonTurno.setDisable(true);
 		Random r = new Random();
 		String s;
@@ -304,14 +304,25 @@ public class ControladorDeJuego implements Initializable {
 	private void accionCasilla(MouseEvent event) {
 		LinkedList<Character> recorrido;
 		recorrido = SistemaDeJuego.obtenerCaminoA(getCharacter((ImageView) event.getSource()));
-		realizarRecorrido(recorrido, recorrido.size());
+		realizarRecorrido(recorrido);
 		SistemaDeJuego.mover_jA(getCharacter((ImageView) event.getSource()));
 	}
 
 	private void siguienteTurno() {
-		Collections.rotate(fichasJugadores, -1);
 		SistemaDeJuego.siguienteTurno();
+		if (!fichasJugadores.get(0).getImage().impl_getUrl().contains(SistemaDeJuego.getPersonajeActual()))
+			Collections.rotate(fichasJugadores, -1);
 		actualizarVista();
+	}
+
+	@FXML
+	private void floyd(ActionEvent event) {
+		try {
+			Stage stage = new Stage();
+			stage.setScene(new Scene((Parent) new FXMLLoader(ClassLoader.getSystemClassLoader().getResource("view/VentanaFloyd.fxml")).load()));
+			stage.show();
+		} catch (IOException ex) {
+		}
 	}
 
 }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="654.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.tablaFloyd">
+   <children>
+      <TableView fx:id="tabla" layoutX="-1.0" prefHeight="654.0" prefWidth="741.0" />
+   </children>
+</AnchorPane>

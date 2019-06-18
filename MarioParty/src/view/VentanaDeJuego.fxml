@@ -152,5 +152,6 @@
       <ListView fx:id="listaDijkstra" layoutX="994.0" layoutY="448.0" prefHeight="242.0" prefWidth="165.0" />
       <ListView fx:id="listaVisitados" layoutX="1151.0" layoutY="52.0" prefHeight="89.0" prefWidth="62.0" />
       <Label layoutX="1151.0" layoutY="30.0" text="Visitados" />
+      <Button layoutX="1187.0" layoutY="665.0" mnemonicParsing="false" onAction="#floyd" text="Floyd" />
    </children>
 </AnchorPane>
