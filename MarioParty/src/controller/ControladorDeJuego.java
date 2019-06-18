@@ -159,6 +159,8 @@ public class ControladorDeJuego implements Initializable {
 		caracteresPorCasilla.add(new Pair<>(casillaY, 'Y'));
 		caracteresPorCasilla.add(new Pair<>(casillaZ, 'Z'));
 		// </editor-fold>
+		for (Pair<ImageView, Character> casilla : caracteresPorCasilla)
+			casilla.getKey().setImage(new Image(ClassLoader.getSystemClassLoader().getResourceAsStream("resources/" + SistemaDeJuego.getTipoCasilla(casilla.getValue()) + ".png")));
 		actualizarVista();
 	}
 
@@ -226,6 +228,7 @@ public class ControladorDeJuego implements Initializable {
 				JOptionPane.showMessageDialog(null, "Has ganado!", "Ganador", 1);
 				((AnchorPane) botonTurno.getParent()).setDisable(true);
 			}
+			siguienteTurno();
 		}
 	}
 
@@ -249,9 +252,9 @@ public class ControladorDeJuego implements Initializable {
 				makeTransition(fichasJugadores.get(0), camino.get(i), Duration.seconds((double) 2 * i / (double) camino.size())));
 		s.setOnFinished((event) -> {
 			SistemaDeJuego.jugarCasillaActual();
+			moverJugador(fichasJugadores.get(0), SistemaDeJuego.getCharPosicion_jA(), Duration.seconds(1));
 			siguienteTurno();
 		});
-		s.setAutoReverse(false);
 		s.play();
 	}
 
@@ -310,7 +313,8 @@ public class ControladorDeJuego implements Initializable {
 
 	private void siguienteTurno() {
 		SistemaDeJuego.siguienteTurno();
-		if (!fichasJugadores.get(0).getImage().impl_getUrl().contains(SistemaDeJuego.getPersonajeActual()))
+		String url = fichasJugadores.get(0).getImage().impl_getUrl();
+		if (!url.contains(SistemaDeJuego.getPersonajeActual()))
 			Collections.rotate(fichasJugadores, -1);
 		actualizarVista();
 	}

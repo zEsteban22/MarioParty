@@ -6,13 +6,13 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import javax.swing.JOptionPane;
 import view.Selector;
 
 /**
@@ -50,6 +50,25 @@ public class SistemaDeJuego {
 
 	private static Jugador getJugador(String ficha) {
 		return JUGADORES.stream().filter((j) -> j.ficha.equals(ficha)).findFirst().get();
+	}
+
+	public static String getTipoCasilla(Character value) {
+		Nodo nodo = tablero.getNodo(value);
+		switch (nodo.modificador) {
+			case COLA:
+				return "cola";
+			case ESTRELLA:
+				return "estrella";
+			case ICE_FLOWER:
+				return "ice_flower";
+			case TUBO:
+				return "tubo";
+			case FIRE_FLOWER:
+				return "fire_flower";
+			case CARCEL:
+			default:
+				return "guessBox";
+		}
 	}
 
 	private SistemaDeJuego() {
@@ -134,67 +153,51 @@ public class SistemaDeJuego {
 		Nodo nodo = tablero.posicionesJugadores.get(jA());
 		List<String> lista;
 		switch (nodo.modificador) {
-			case BOMBERMARIO:
-
-				break;
-			case BROS_MEMORY:
-
-				break;
 			case CARCEL:
+				JOptionPane.showMessageDialog(null, "Has caído en una casilla de carcel, ahora tienes dos turnos de castigo", "Casilla especial", 1);
 				jA().visitados.add(tablero.posicionesJugadores.get(jA()));
 				jA_ponerCastigo(2);
 				break;
-			case CATCH_CAT:
-
-				break;
 			case COLA:
+				JOptionPane.showMessageDialog(null, "Has caído en una casilla de cola, ahora debes escoger a qué casilla quieres ir.", "Casilla especial", 1);
 				jA().visitados.add(tablero.posicionesJugadores.get(jA()));
 				lista = new ArrayList<>(26);
-				for (char i = 'A'; i <= 'Z'; i++) lista.add(String.valueOf(i));
+				for (char i = 'A'; i <= 'Z'; i++) if (!jA().visitados.contains(tablero.getNodo(i)))
+						lista.add(String.valueOf(i));
 				tablero.posicionesJugadores.put(jA(), tablero.getNodo(Selector.escogerJugador(lista).charAt(0)));
 				break;
-			case COLLECT_COINS:
-
-				break;
 			case ESTRELLA:
+				JOptionPane.showMessageDialog(null, "Has caído en una casilla de estrella, ahora tienes un turno extra!", "Casilla especial", 1);
 				jA().visitados.add(tablero.posicionesJugadores.get(jA()));
 				Collections.rotate(JUGADORES, 1);
 				break;
 			case FIRE_FLOWER:
+				JOptionPane.showMessageDialog(null, "Has caído en una casilla de flor de fuego, ahora debes escoger a alguien para reiniciarle el juego", "Casilla especial", 1);
 				jA().visitados.add(tablero.posicionesJugadores.get(jA()));
 				lista = getFichas();
 				lista.remove(jA().ficha);
-				getJugador(Selector.escogerJugador(lista)).visitados.clear();
-				break;
-			case GATO:
-
-				break;
-			case GUESS_WHO:
-
+				lista.set(0, Selector.escogerJugador(lista));
+				getJugador(lista.get(0)).visitados.clear();
+				getJugador(lista.get(0)).visitados.add(tablero.getPosicionJugador(getJugador(lista.get(0))));
 				break;
 			case ICE_FLOWER:
+				JOptionPane.showMessageDialog(null, "Has caído en una casilla de flor de hielo, ahora debes escoger a alguien para prohibirle jugar durante dos turnos", "Casilla especial", 1);
 				jA().visitados.add(tablero.posicionesJugadores.get(jA()));
 				lista = getFichas();
 				lista.remove(jA().ficha);
 				CARCEL.put(getJugador(Selector.escogerJugador(lista)), (short) 2);
 				break;
-			case MARIO_CARDS:
-
-				break;
-			case MEMORY_PATH:
-
-				break;
-			case SOPA_LETRAS:
-
-				break;
 			case TUBO:
+				JOptionPane.showMessageDialog(null, "Has caído en un tubo, ahora serás movido hacia donde te lleve el tubo", "Casilla especial", 1);
 				jA().visitados.add(tablero.posicionesJugadores.get(jA()));
 				tablero.posicionesJugadores.put(jA(), tablero.tubos.indexOf(nodo) == 2 ? tablero.tubos.get(0) : tablero.tubos.get(tablero.tubos.indexOf(nodo) + 1));
 				jA().visitados.add(tablero.posicionesJugadores.get(jA()));
 				break;
+			default:
+				JOptionPane.showMessageDialog(null, "Juego no implementado xd", "Minijuego", 1);
+				jA().visitados.add(tablero.posicionesJugadores.get(jA()));
+				break;
 		}
-		jA().visitados.add(tablero.posicionesJugadores.get(jA()));
-		//Platform.runLater(() -> JOptionPane.showMessageDialog(null, "Se ha jugado la casilla actual jaja", "Minijuego", 1));
 	}
 
 	/**
@@ -320,6 +323,6 @@ public class SistemaDeJuego {
 	}
 
 	public static void mover_jA(char idNodo) {
-
+		tablero.posicionesJugadores.put(jA(), tablero.getNodo(idNodo));
 	}
 }
