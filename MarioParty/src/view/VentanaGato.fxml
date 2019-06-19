@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControladorVentanaGato">
+   <children>
+      <ImageView fitHeight="409.0" fitWidth="606.0" layoutX="-3.0" layoutY="-3.0" pickOnBounds="true">
+         <image>
+            <Image url="@../resources/deskTexture.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="400.0" fitWidth="323.0" layoutX="140.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/paperTexture.jpg" />
+         </image>
+         <effect>
+            <DropShadow />
+         </effect>
+      </ImageView>
+      <Line endX="112.0" layoutX="295.0" layoutY="182.0" startX="-100.0" />
+      <Line endX="112.0" layoutX="295.0" layoutY="250.0" startX="-100.0" />
+      <Line endX="112.0" layoutX="261.0" layoutY="218.0" rotate="90.0" startX="-100.0" />
+      <Line endX="112.0" layoutX="330.0" layoutY="218.0" rotate="90.0" startX="-100.0" />
+      <Label layoutX="243.0" layoutY="40.0" prefHeight="56.0" prefWidth="116.0" text="¡Gato!">
+         <font>
+            <Font name="Gill Sans MT" size="43.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="cuadro1" fitHeight="68.0" fitWidth="70.0" layoutX="195.0" layoutY="112.0" onMouseClicked="#cuadroPresionado" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/x.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="cuadro2" fitHeight="68.0" fitWidth="70.0" layoutX="266.0" layoutY="115.0" onMouseClicked="#cuadroPresionado" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/x.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="cuadro3" fitHeight="68.0" fitWidth="70.0" layoutX="338.0" layoutY="115.0" onMouseClicked="#cuadroPresionado" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/x.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="cuadro4" fitHeight="68.0" fitWidth="70.0" layoutX="195.0" layoutY="184.0" onMouseClicked="#cuadroPresionado" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/x.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="cuadro5" fitHeight="68.0" fitWidth="70.0" layoutX="266.0" layoutY="184.0" onMouseClicked="#cuadroPresionado" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/x.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="cuadro6" fitHeight="68.0" fitWidth="70.0" layoutX="337.0" layoutY="184.0" onMouseClicked="#cuadroPresionado" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/x.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="cuadro7" fitHeight="68.0" fitWidth="70.0" layoutX="198.0" layoutY="252.0" onMouseClicked="#cuadroPresionado" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/x.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="cuadro8" fitHeight="68.0" fitWidth="70.0" layoutX="266.0" layoutY="252.0" onMouseClicked="#cuadroPresionado" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/x.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="cuadro9" fitHeight="68.0" fitWidth="70.0" layoutX="337.0" layoutY="252.0" onMouseClicked="#cuadroPresionado" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/x.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
