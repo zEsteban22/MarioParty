@@ -227,8 +227,8 @@ public class ControladorDeJuego implements Initializable {
 			if (SistemaDeJuego.jA_haGanado()) {
 				JOptionPane.showMessageDialog(null, "Has ganado!", "Ganador", 1);
 				((AnchorPane) botonTurno.getParent()).setDisable(true);
-			}
-			siguienteTurno();
+			} else
+				siguienteTurno();
 		}
 	}
 
@@ -250,17 +250,17 @@ public class ControladorDeJuego implements Initializable {
 		for (short i = 0; i < camino.size(); i++)
 			s.getChildren().add(
 				makeTransition(fichasJugadores.get(0), camino.get(i), Duration.seconds((double) 2 * i / (double) camino.size())));
-		s.setOnFinished((event) -> {
+		s.setOnFinished((event) -> Platform.runLater(() -> {
 			SistemaDeJuego.jugarCasillaActual();
-			moverJugador(fichasJugadores.get(0), SistemaDeJuego.getCharPosicion_jA(), Duration.seconds(1));
+			if (fichasJugadores.get(0).getImage().impl_getUrl().contains(SistemaDeJuego.getPersonajeActual()))
+				moverJugador(fichasJugadores.get(0), SistemaDeJuego.getCharPosicion_jA(), Duration.seconds(1));
 			siguienteTurno();
-		});
+		}));
 		s.play();
 	}
 
 	@FXML
-	private void girarDado(ActionEvent event
-	) {
+	private void girarDado(ActionEvent event) {
 		botonTurno.setDisable(true);
 		Random r = new Random();
 		String s;
@@ -278,7 +278,7 @@ public class ControladorDeJuego implements Initializable {
 			s = "Ha caído un " + (dado1 + dado2) + " en los dados.";
 			activarCasillas(dado1 + dado2);
 		}
-		JOptionPane.showMessageDialog(null, s, "Resultado dados", 1);
+		Platform.runLater(() -> JOptionPane.showMessageDialog(null, s, "Resultado dados", 1));
 		if (SistemaDeJuego.jA_tieneCastigo())
 			siguienteTurno();
 	}

@@ -13,6 +13,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import javax.swing.JOptionPane;
+import model.Minijuegos.MarioCardsController;
+import model.Minijuegos.MemoryPath;
+import model.Minijuegos.SuperBrosMemory;
 import view.Selector;
 
 /**
@@ -65,7 +68,24 @@ public class SistemaDeJuego {
 				return "tubo";
 			case FIRE_FLOWER:
 				return "fire_flower";
+			case BOMBERMARIO:
+				return "bombermario";
+			case MARIO_CARDS:
+				return "mario_cards";
+			case BROS_MEMORY:
+				return "bros_memory";
 			case CARCEL:
+				return "carcel";
+			case CATCH_CAT:
+				return "catch_cat";
+			case COLLECT_COINS:
+				return "collect_coins";
+			case GATO:
+				return "gato";
+			case MEMORY_PATH:
+				return "memory_path";
+			case SOPA_LETRAS:
+				return "sopa_letras";
 			default:
 				return "guessBox";
 		}
@@ -190,11 +210,31 @@ public class SistemaDeJuego {
 			case TUBO:
 				JOptionPane.showMessageDialog(null, "Has caído en un tubo, ahora serás movido hacia donde te lleve el tubo", "Casilla especial", 1);
 				jA().visitados.add(tablero.posicionesJugadores.get(jA()));
-				tablero.posicionesJugadores.put(jA(), tablero.tubos.indexOf(nodo) == 2 ? tablero.tubos.get(0) : tablero.tubos.get(tablero.tubos.indexOf(nodo) + 1));
-				jA().visitados.add(tablero.posicionesJugadores.get(jA()));
+				if (tablero.posicionesJugadores.values().contains(tablero.tubos.indexOf(nodo) == 2 ? tablero.tubos.get(0) : tablero.tubos.get(tablero.tubos.indexOf(nodo) + 1)))
+					JOptionPane.showMessageDialog(null, "Ups, ya había un jugador en la casilla a la que te llevaba este tubo, no puedes usarlo.");
+				else {
+					tablero.posicionesJugadores.put(jA(), tablero.tubos.indexOf(nodo) == 2 ? tablero.tubos.get(0) : tablero.tubos.get(tablero.tubos.indexOf(nodo) + 1));
+					if (!jA().visitados.contains(tablero.posicionesJugadores.get(jA())))
+						jA().visitados.add(tablero.posicionesJugadores.get(jA()));
+				}
+				break;
+			case MEMORY_PATH:
+				JOptionPane.showMessageDialog(null, "Has caído en el minijuego de memory path, debes encontrar el camino desde arriba hacia la última casilla de abajo.");
+				if (MemoryPath.jugarMemoryPath())
+					jA().visitados.add(tablero.posicionesJugadores.get(jA()));
+				break;
+			case BROS_MEMORY:
+				JOptionPane.showMessageDialog(null, "Has caído en el minijuego de super bros memory, debes retar a alguien y obtener más parejas que él.");
+				if (SuperBrosMemory.jugarSuperBrosMemory())
+					jA().visitados.add(tablero.posicionesJugadores.get(jA()));
+				break;
+			case MARIO_CARDS:
+				JOptionPane.showMessageDialog(null, "Has caído en el minijuego de mario cards, todos los jugadores deben escoger una carta y si obtienes la carta más alta, ganas.");
+				if (MarioCardsController.jugarMarioCards())
+					jA().visitados.add(tablero.posicionesJugadores.get(jA()));
 				break;
 			default:
-				JOptionPane.showMessageDialog(null, "Juego no implementado xd", "Minijuego", 1);
+				JOptionPane.showMessageDialog(null, "Juego no implementado aún", "Minijuego", 1);
 				jA().visitados.add(tablero.posicionesJugadores.get(jA()));
 				break;
 		}

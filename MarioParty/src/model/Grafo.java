@@ -157,21 +157,4 @@ final class FloydWarshall {
 					}
 		return dist;
 	}
-
-	static void printResult(short[][] dist, char[][] next) {
-		System.out.println("pair     dist    path");
-		for (char i = 0; i < next.length; i++)
-			for (char j = 0; j < next.length; j++)
-				if (i != j) {
-					char u = (char) (i + 1 + 'a');
-					char v = (char) (j + 1 + 'a');
-					String path = format("%c -> %c    %2d     %s", u, v,
-															 (int) dist[i][j], u);
-					do {
-						u = (char) (next[u - 1 - 'a'][v - 1 - 'a'] + 'a');
-						path += " -> " + u;
-					} while (u != v);
-					System.out.println(path);
-				}
-	}
 }
